@@ -5,7 +5,26 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" Vundle
 Plugin 'VundleVim/Vundle.vim'
+
+" FileTree Explorer
+Plugin 'scrooloose/nerdtree.git'
+
+" Syntax Checker
+Plugin 'scrooloose/syntastic'
+
+" AutoComplete
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
+
+" Html Autocomplete
+Plugin 'alvan/vim-closetag'
+
+" Vim color config for Tmux
+Plugin 'edkolev/tmuxline.vim'
+
+" Vim colorschemes
 Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()
@@ -13,7 +32,6 @@ filetype plugin indent on
 
 " Normal Vim settings
 syntax on
-set background=dark
 colorscheme molokai
 
 set noshowmode
@@ -36,6 +54,11 @@ set hlsearch
 set incsearch
 set backspace=indent,eol,start
 set wildmenu
+set showmatch
+set encoding=utf-8
+
+" For HTML auto-complete
+let g:closetag_filenames = '*html,*xhtml,*phtml'
 
 " Powerline Setup
 python3 from powerline.vim import setup as powerline_setup
