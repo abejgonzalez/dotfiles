@@ -57,6 +57,7 @@ set backspace=indent,eol,start
 set wildmenu
 set showmatch
 set encoding=utf-8
+set number relativenumber
 
 " For Syntax Checker
 set statusline+=%#warningmsg#
