@@ -27,6 +27,12 @@ Plugin 'edkolev/tmuxline.vim'
 " Vim colorschemes
 Plugin 'flazz/vim-colorschemes'
 
+" Scala Integrations
+Plugin 'derekwyatt/vim-scala'
+
+" Save (and update) ctags on file save
+Plugin 'craigemery/vim-autotag'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -71,6 +77,25 @@ let g:syntastic_check_on_wq = 0
 
 " For HTML Autocomplete
 let g:closetag_filenames = '*html,*xhtml,*phtml'
+
+" For Chisel syntax highlighting
+augroup ft_scala
+    autocmd!
+    autocmd Syntax scala syn keyword chiselKeyword when elsewhen otherwise 
+    autocmd Syntax scala hi link chiselKeyword Keyword
+    autocmd Syntax scala syn match chiselFunction /\<printf\>/ 
+    autocmd Syntax scala hi link chiselFunction Function 
+    autocmd Syntax scala syn match chiselOperator "==="
+    autocmd Syntax scala syn match chiselOperator "=/="
+    autocmd Syntax scala syn match chiselOperator "+%"
+    autocmd Syntax scala syn match chiselOperator "+&"
+    autocmd Syntax scala syn match chiselOperator "-%"
+    autocmd Syntax scala syn match chiselOperator "-&"
+    autocmd Syntax scala hi link chiselOperator Special
+augroup end
+
+" Automatic search of ctags
+set tags=tags;/
 
 " Powerline Setup
 python3 from powerline.vim import setup as powerline_setup
