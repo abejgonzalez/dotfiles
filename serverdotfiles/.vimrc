@@ -2,9 +2,12 @@ set t_Co=256
 set nocompatible
 filetype off
 
+let &runtimepath='/scratch/abejgonza/.vim'
+set runtimepath+='/scratch/abejgonza/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after'
+
 " Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=/scratch/abejgonza/config/.vim/bundle/Vundle.vim
+call vundle#begin('/scratch/abejgonza/config/.vim/bundle')
 
 " Vundle
 Plugin 'VundleVim/Vundle.vim'
