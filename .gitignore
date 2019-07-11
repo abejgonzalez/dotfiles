@@ -1,5 +1,6 @@
 *
 
+!firrtl-syntax
 !.gitignore
 !.vimrc
 !.tmux.conf
