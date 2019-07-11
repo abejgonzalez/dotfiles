@@ -1,0 +1,14 @@
+: "${CONFIG_DIR:?Need to set CONFIG_DIR}"
+
+# Better ls
+alias l="ls -alh --color=auto"
+
+# Use a specific .vimrc
+alias vim='vim -u $CONFIG_DIR/.vimrc'
+
+# Use a specific .tmux.conf
+alias tmux='tmux -f $CONFIG_DIR/.tmux.conf'
+
+# Set default editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
