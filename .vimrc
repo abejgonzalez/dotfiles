@@ -93,3 +93,6 @@ set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=2
+
+" Setup tmuxline to not show special characters
+let g:tmuxline_powerline_separators = 0
