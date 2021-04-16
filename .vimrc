@@ -60,6 +60,7 @@ set wildmenu
 set showmatch
 set encoding=utf-8
 set number relativenumber
+set tabpagemax=100
 
 " For Chisel syntax highlighting
 augroup ft_scala
