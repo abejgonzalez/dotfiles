@@ -14,6 +14,10 @@ echo "source \$CONFIG_DIR/.bash_prompt" >> $BASHRC_FILE
 
 git clone https://github.com/VundleVim/Vundle.vim.git $PWD/.vim/bundle/Vundle.vim
 
+# Add to git config
+echo "[url \"ssh://git@github.com/\"]" >> ~/.gitconfig
+echo "  insteadOf = https://github.com/" >> ~/.gitconfig
+
 # Setup .vimrc properly
 
 MODIFIED_PWD=$(echo $PWD | sed 's/\//\\\//g')
