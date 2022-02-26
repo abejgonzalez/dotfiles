@@ -1,0 +1,9 @@
+Host *
+    User abe.gonzalez
+    Hostname %h.millennium.berkeley.edu
+    ForwardAgent yes
+
+Host buildbot
+    User buildbot
+    Hostname ferry.millennium.berkeley.edu
+    ForwardAgent yes

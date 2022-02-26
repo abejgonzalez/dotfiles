@@ -36,3 +36,7 @@ mkdir -p $SCRIPT_DIR/.vim/ftdetect
 ln syntax/firrtl.vim $SCRIPT_DIR/.vim/syntax/firrtl.vim
 ln ftdetect/firrtl.vim $SCRIPT_DIR/.vim/ftdetect/firrtl.vim
 popd
+
+# add ssh config to .ssh/config
+mkdir -p ~/.ssh
+cat $SCRIPT_DIR/config >> ~/.ssh/config
