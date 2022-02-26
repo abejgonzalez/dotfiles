@@ -97,3 +97,6 @@ set foldlevel=2
 
 " Setup tmuxline to not show special characters
 let g:tmuxline_powerline_separators = 0
+
+" Have nerdtree show hidden files
+let NERDTreeShowHidden=1
