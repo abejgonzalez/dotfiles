@@ -1,25 +1,38 @@
 #!/bin/bash
 
-# Print stuff
 set -x
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-# Setup the .bashrc file
+# Setup the initial files based on $SHELL
 
-BASHRC_FILE=~/.bashrc
-echo "export CONFIG_DIR=$PWD" >> $BASHRC_FILE
-echo "source \$CONFIG_DIR/.bash_common" >> $BASHRC_FILE
-echo "source \$CONFIG_DIR/.bash_prompt" >> $BASHRC_FILE
+SHELL_TYPE=$(basename ${SHELL})
+SHELLRC_FILE=~/.${SHELL_TYPE}rc
+
+echo "export CONFIG_DIR=$SCRIPT_DIR" >> $SHELLRC_FILE
+echo "source \$CONFIG_DIR/.${SHELL_TYPE}_common" >> $SHELLRC_FILE
+echo "source \$CONFIG_DIR/.${SHELL_TYPE}_prompt" >> $SHELLRC_FILE
 
 # Install Vundle
 
-git clone https://github.com/VundleVim/Vundle.vim.git $PWD/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git $SCRIPT_DIR/.vim/bundle/Vundle.vim
 
 # Add to git config
+
 echo "[url \"ssh://git@github.com/\"]" >> ~/.gitconfig
 echo "  insteadOf = https://github.com/" >> ~/.gitconfig
 
 # Setup .vimrc properly
 
-MODIFIED_PWD=$(echo $PWD | sed 's/\//\\\//g')
-sed -i "s/\/scratch\/abejgonza\/config/$MODIFIED_PWD/g" $PWD/.vimrc
+MODIFIED_PWD=$(echo $SCRIPT_DIR | sed 's/\//\\\//g')
+sed -i "s/\/scratch\/abejgonza\/config/$MODIFIED_PWD/g" $SCRIPT_DIR/.vimrc
 echo "Please run: vim -c 'VundleInstall' -c 'q' after relogging in"
+
+# Setup firrtl syntax for vim
+
+git submodule update --init --recursive firrtl-syntax
+pushd firrtl-syntax
+mkdir -p $SCRIPT_DIR/.vim/syntax
+mkdir -p $SCRIPT_DIR/.vim/ftdetect
+ln syntax/firrtl.vim $SCRIPT_DIR/.vim/syntax/firrtl.vim
+ln ftdetect/firrtl.vim $SCRIPT_DIR/.vim/ftdetect/firrtl.vim
+popd
