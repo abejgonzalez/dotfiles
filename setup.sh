@@ -40,3 +40,13 @@ popd
 # add ssh config to .ssh/config
 mkdir -p ~/.ssh
 cat $SCRIPT_DIR/config >> ~/.ssh/config
+
+# install plugins
+if [[ $SHELL_TYPE == "zsh" ]]; then
+    # fast syntax highlighting
+    git clone --depth 1 https://github.com/zdharma-continuum/fast-syntax-highlighting $HOME/.zsh/fsh
+    # pure prompt
+    git clone --depth 1 https://github.com/sindresorhus/pure $HOME/.zsh/pure
+    # autocomplete
+    git clone --depth 1 https://github.com/marlonrichert/zsh-autocomplete.git $HOME/.zsh/zsh-autocomplete
+fi

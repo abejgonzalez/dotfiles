@@ -15,3 +15,13 @@ alias ssh="ssh -A"
 # Set default editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+# Set zsh plugins
+autoload -U colors && colors
+source $HOME/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source $HOME/.zsh/fsh/fast-syntax-highlighting.plugin.zsh
+
+# set autocomplete to start after typing 1 char
+zstyle ':autocomplete:*' min-input 1
+# set autocomplete to use tab to cycle options
+zstyle ':autocomplete:*' widget-style menu-complete
