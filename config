@@ -1,4 +1,9 @@
-Host *
+Host a*
+    User abe.gonzalez
+    Hostname %h.millennium.berkeley.edu
+    ForwardAgent yes
+
+Host ferry
     User abe.gonzalez
     Hostname %h.millennium.berkeley.edu
     ForwardAgent yes
