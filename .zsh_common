@@ -39,3 +39,6 @@ setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 #add timestamp for each entry
 setopt EXTENDED_HISTORY
+
+# disable showing recent directories in the autocomplete
+zstyle ':autocomplete:*' recent-dirs no
