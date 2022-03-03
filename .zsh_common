@@ -25,3 +25,17 @@ source $HOME/.zsh/fsh/fast-syntax-highlighting.plugin.zsh
 zstyle ':autocomplete:*' min-input 1
 # set autocomplete to use tab to cycle options
 zstyle ':autocomplete:*' widget-style menu-complete
+
+# set history configuration
+# #set history size
+export HISTSIZE=10000
+#save history after logout
+export SAVEHIST=10000
+#history file
+export HISTFILE=$HOME/.zsh/.zhistory
+#append into history file
+setopt INC_APPEND_HISTORY
+#save only one command if 2 common are same and consistent
+setopt HIST_IGNORE_DUPS
+#add timestamp for each entry
+setopt EXTENDED_HISTORY
