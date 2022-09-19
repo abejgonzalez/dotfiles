@@ -16,15 +16,19 @@ alias ssh="ssh -A"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-# Set zsh plugins
-autoload -U colors && colors
-source $HOME/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source $HOME/.zsh/fsh/fast-syntax-highlighting.plugin.zsh
-
 # set autocomplete to start after typing 1 char
 zstyle ':autocomplete:*' min-input 1
 # set autocomplete to use tab to cycle options
 zstyle ':autocomplete:*' widget-style menu-complete
+# disable showing recent directories in the autocomplete
+zstyle ':autocomplete:*' recent-dirs no
+# disable filling in the 1st completion
+zstyle ':autocomplete:*' insert-unambiguous yes
+
+# Set zsh plugins
+autoload -U colors && colors
+source $HOME/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source $HOME/.zsh/fsh/fast-syntax-highlighting.plugin.zsh
 
 # set history configuration
 # #set history size
@@ -39,6 +43,3 @@ setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 #add timestamp for each entry
 setopt EXTENDED_HISTORY
-
-# disable showing recent directories in the autocomplete
-zstyle ':autocomplete:*' recent-dirs no
