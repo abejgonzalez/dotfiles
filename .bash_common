@@ -9,9 +9,9 @@ alias vim="vim -u $CONFIG_DIR/.vimrc"
 # Use a specific .tmux.conf
 alias tmux="tmux -f $CONFIG_DIR/.tmux.conf"
 
-# Use -A with ssh to forward keys
-alias ssh="ssh -A"
-
 # Set default editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+# Expand env. variables on prompt
+shopt -s direxpand
