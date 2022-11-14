@@ -8,7 +8,16 @@ WHITE='\[\033[0;39m\]'
 GREEN='\[\033[0;92m\]'
 BLUE='\[\033[0;94m\]'
 PURPLE='\[\033[1;35m\]'
-PS1="${BYELLOW}[\@]:${GREEN}[\u@\h]:${BLUE}[\W]:${PURPLE}["'$(parse_git_branch)'"]${WHITE}\$ "
+PURPLE_INNER='\033[1;35m'
+
+PS1="${BYELLOW}[\@]:${GREEN}[\u@\h]:${BLUE}[\W]"
+cond_git_branch() {
+    GIT_BRANCH=$(parse_git_branch)
+    if [ ! -z "${GIT_BRANCH}" ]; then
+        printf ":${PURPLE_INNER}[${GIT_BRANCH}]"
+    fi
+}
+PS1+='$(cond_git_branch)'"${WHITE}\$ "
 
 # continuation interactive prompt (for multi-line commands)
 PS2='> '
