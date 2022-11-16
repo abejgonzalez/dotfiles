@@ -16,11 +16,6 @@ echo "source \$CONFIG_DIR/.${SHELL_TYPE}_prompt" >> $SHELLRC_FILE
 
 git clone https://github.com/VundleVim/Vundle.vim.git $SCRIPT_DIR/.vim/bundle/Vundle.vim
 
-# Add to git config
-
-echo "[url \"ssh://git@github.com/\"]" >> ~/.gitconfig
-echo "  insteadOf = https://github.com/" >> ~/.gitconfig
-
 # Setup .vimrc properly
 
 MODIFIED_PWD=$(echo $SCRIPT_DIR | sed 's/\//\\\//g')
@@ -50,3 +45,8 @@ if [[ $SHELL_TYPE == "zsh" ]]; then
     # autocomplete
     git clone --depth 1 https://github.com/marlonrichert/zsh-autocomplete.git $HOME/.zsh/zsh-autocomplete
 fi
+
+# Add to git config
+
+echo "[url \"ssh://git@github.com/\"]" >> ~/.gitconfig
+echo "  insteadOf = https://github.com/" >> ~/.gitconfig
