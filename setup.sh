@@ -9,6 +9,7 @@ SHELL_TYPE=$(basename ${SHELL})
 SHELLRC_FILE=~/.${SHELL_TYPE}rc
 
 echo "export XDG_CONFIG_HOME=$SCRIPT_DIR" >> $SHELLRC_FILE
+echo "export XDG_DATA_HOME=$SCRIPT_DIR" >> $SHELLRC_FILE
 echo "source \$XDG_CONFIG_HOME/.${SHELL_TYPE}_common" >> $SHELLRC_FILE
 echo "source \$XDG_CONFIG_HOME/.${SHELL_TYPE}_prompt" >> $SHELLRC_FILE
 
