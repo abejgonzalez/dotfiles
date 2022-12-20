@@ -2,3 +2,6 @@
 .*.swp
 github-copilot/
 installs/
+nvim/plugged
+nvim/site
+nvim/tree-sitter-devicetree
