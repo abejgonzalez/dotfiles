@@ -40,3 +40,6 @@ setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 #add timestamp for each entry
 setopt EXTENDED_HISTORY
+
+# TESTING: nvim testing
+export XDG_CONFIG_HOME=$CONFIG_DIR
