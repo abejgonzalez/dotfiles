@@ -1,3 +1,6 @@
+" map leader key to something more reachable
+let mapleader = " "
+
 " vim plug options
 
 " Install vim-plug if not found
@@ -21,8 +24,9 @@ Plug 'edkolev/tmuxline.vim' " color config for tmux
 Plug 'vim-airline/vim-airline' " nice statusbar
 Plug 'craigemery/vim-autotag' " save (and update) ctags on file save
 "Plug 'github/copilot.vim' " enable github copilot
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-lua/plenary.nvim' " see nextline
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } " fuzzy finder
+Plug 'akinsho/git-conflict.nvim' " git conflict marker highlighting
 call plug#end()
 " automatically calls
 "syntax on " enable syntax highlighting
@@ -41,7 +45,7 @@ set t_Co=256 " support 256 color mode (for iterm2)
 set ttyfast " speed up scrolling in vim
 set noshowmode " don't show '-- MODENAME --' in status bar (normally enabled with statusline plugins
 set nobackup " delete backup file on successful write
-set ttimeoutlen=50 " set timeout for combination of keys
+set ttimeoutlen=500 " set timeout for combination of keys
 set nowrap " don't wrap long lines
 set number " add line numbers
 set relativenumber " make current line number 0 and other line numbers relative to this line
@@ -92,6 +96,12 @@ set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=2
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Setup tmuxline to not show special characters
 let g:tmuxline_powerline_separators = 0
