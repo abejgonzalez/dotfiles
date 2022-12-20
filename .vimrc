@@ -1,11 +1,11 @@
 set t_Co=256
 set nocompatible
 filetype off
-set rtp+=/scratch/abejgonza/config/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after
+set rtp+=/Users/abejgonza/dotfiles/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after
 
 " Vundle
-set rtp+=/scratch/abejgonza/config/.vim/bundle/Vundle.vim
-call vundle#begin('/scratch/abejgonza/config/.vim/bundle')
+set rtp+=/Users/abejgonza/dotfiles/.vim/bundle/Vundle.vim
+call vundle#begin('/Users/abejgonza/dotfiles/.vim/bundle')
 
 " Vundle
 Plugin 'VundleVim/Vundle.vim'

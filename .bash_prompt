@@ -16,7 +16,8 @@ cond_git_branch() {
         printf ":[${GIT_BRANCH}]"
     fi
 }
-PS1+='$(cond_git_branch)'"${WHITE}\$ "
+PS1+='$(cond_git_branch)'"${WHITE}\n"
+PS1+=$'\u276f '
 
 # continuation interactive prompt (for multi-line commands)
-PS2='> '
+PS2=$'\u276f '

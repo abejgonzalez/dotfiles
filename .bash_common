@@ -1,16 +1,15 @@
-: "${CONFIG_DIR:?Need to set CONFIG_DIR}"
+: "${XDG_CONFIG_HOME:?Need to set XDG_CONFIG_HOME}"
 
 # Better ls
 alias l="ls -alh --color=auto"
 
-# Use a specific .vimrc
-alias vim="vim -u $CONFIG_DIR/.vimrc"
+alias vim="nvim"
 
 # Use a specific .tmux.conf
-alias tmux="tmux -f $CONFIG_DIR/.tmux.conf"
+alias tmux="tmux -f $XDG_CONFIG_HOME/.tmux.conf"
 
 # Set default editor
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # Expand env. variables on prompt
