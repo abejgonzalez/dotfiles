@@ -28,6 +28,12 @@ Plugin 'craigemery/vim-autotag'
 " Vim airline
 Plugin 'vim-airline/vim-airline'
 
+" Mark git diff
+Plugin 'airblade/vim-gitgutter'
+
+" Add git conflict markers
+Plugin 'rhysd/conflict-marker.vim'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -100,3 +106,6 @@ let g:tmuxline_powerline_separators = 0
 
 " Have nerdtree show hidden files
 let NERDTreeShowHidden=1
+
+" Have git gutter update fast
+set updatetime=100
