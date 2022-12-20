@@ -1,9 +1,16 @@
 " vim plug options
+
+" Install vim-plug if not found
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '$XDG_CONFIG_HOME/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
     silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
 call plug#begin()
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " parse file into tree for better highlighting, etc
@@ -13,7 +20,9 @@ Plug 'scrooloose/nerdtree' " file tree explorer
 Plug 'edkolev/tmuxline.vim' " color config for tmux
 Plug 'vim-airline/vim-airline' " nice statusbar
 Plug 'craigemery/vim-autotag' " save (and update) ctags on file save
-Plug 'github/copilot.vim' " enable github copilot
+"Plug 'github/copilot.vim' " enable github copilot
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 call plug#end()
 " automatically calls
 "syntax on " enable syntax highlighting
@@ -70,7 +79,7 @@ augroup ft_scala
     autocmd Syntax scala hi link chiselOperator Special
 augroup end
 
-"au BufRead,BufNewFile *.fir set filetype=firrtl
+au BufRead,BufNewFile *.fir set filetype=firrtl
 
 " Automatically clear non-useful whitespace on write
 autocmd BufWritePre * :%s/\s\+$//e
