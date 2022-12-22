@@ -1,16 +1,57 @@
 : "${XDG_CONFIG_HOME:?Need to set XDG_CONFIG_HOME}"
 
-# Better ls
+# better ls
 alias l="ls -alh --color=auto"
 
 alias vim="nvim"
 
-# Use a specific .tmux.conf
+# use a specific .tmux.conf
 alias tmux="tmux -f $XDG_CONFIG_HOME/.tmux.conf"
 
-# Set default editor
+# set default editor
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-# Expand env. variables on prompt
+# expand env. variables on prompt
 shopt -s direxpand
+
+# set filelimit to the max hardlimit
+ulimit -Sn $(ulimit -Hn)
+
+# use CY sbt thin client when possible
+export ENABLE_SBT_THIN_CLIENT=1
+
+# shutdown sbt thin servers after 7 days
+SBT_THIN_SERVER_UP_S=$(( 7*24*60*60 ))
+pgrep -a java | grep -i "sbt-launch.jar --detach-stdio" | awk '{print $1}' | while read pid; do
+    # get elapse time of pid in s
+    sbt_up_s=$(ps -p $pid -o etimes | tail -n1 | awk '{print $1}')
+    if [ "$SBT_THIN_SERVER_UP_S" -lt "$sbt_up_s" ]; then
+        echo "Deleting background SBT server running w/ PID: $pid"
+        kill -9 $pid
+    fi
+done
+
+# setup ssh-agent (see https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login)
+SSH_ENV="$HOME/.ssh/agent-environment-$(uname -n)"
+function start_agent {
+    echo "Initialising new SSH agent..."
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
+}
+
+# source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
+fi
+
+

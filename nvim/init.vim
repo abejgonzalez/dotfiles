@@ -109,6 +109,10 @@ let g:tmuxline_powerline_separators = 0
 
 " Have nerdtree show hidden files
 let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.o$', '\.swp$', '\.swo$', '\.vcd$', '\.fsdb$']
+
+" Disable mouse
+set mouse=
 
 " install lua side
 lua require('config')
