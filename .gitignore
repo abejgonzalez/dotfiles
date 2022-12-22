@@ -5,3 +5,5 @@ installs/
 nvim/plugged
 nvim/site
 nvim/tree-sitter-devicetree
+jgit/
+telescope_history

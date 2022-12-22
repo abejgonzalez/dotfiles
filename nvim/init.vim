@@ -27,6 +27,7 @@ Plug 'craigemery/vim-autotag' " save (and update) ctags on file save
 Plug 'nvim-lua/plenary.nvim' " see nextline
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } " fuzzy finder
 Plug 'akinsho/git-conflict.nvim' " git conflict marker highlighting
+Plug 'lukas-reineke/indent-blankline.nvim' " indentation guides
 call plug#end()
 " automatically calls
 "syntax on " enable syntax highlighting
