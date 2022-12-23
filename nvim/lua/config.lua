@@ -1,2 +1,8 @@
+require "default-settings"
 require "user.treesitter"
 require "user.indent-blankline"
+require "user.sonokai"
+require "user.telescope"
+require "user.tmuxline"
+require "user.trim"
+require "user.nvim-tree"
