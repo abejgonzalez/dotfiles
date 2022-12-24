@@ -9,3 +9,5 @@ jgit/
 telescope_history
 htop/
 nvim/.netrwhist
+nvim/plugin/
+nvim/rplugin.vim

@@ -6,7 +6,7 @@ vim.g.maplocalleader = ' '
 vim.o.termguicolors = true
 vim.o.t_Co = 256 -- support 256 color mode (for iterm2)
 vim.o.ttyfast = true -- speed up scrolling in vim
-vim.g.noshowmode = true -- don't show '-- MODENAME --' in status bar (normally enabled with statusline plugins
+vim.o.showmode = false -- don't show '-- MODENAME --' in status bar (normally enabled with statusline plugins
 vim.g.nobackup = true-- delete backup file on successful write
 vim.o.ttimeoutlen = 500 -- set timeout for combination of keys
 vim.wo.wrap = false -- don't wrap long lines
@@ -15,13 +15,7 @@ vim.o.relativenumber = true-- make current line number 0 and other line numbers 
 vim.o.tabpagemax = 100 -- set max. number of vim tabs to open
 vim.o.encoding = 'utf-8' -- set output shown in terminal to utf-8
 vim.o.wildmenu = true -- set wildcard menu to only appear in status bar
-
--- tab/indentation settings
-vim.o.tabstop = 4 -- number of columns occupied by a tab
-vim.o.softtabstop = 4 -- see multiple spaces as tabstops so <BS> works
-vim.o.expandtab = true -- convert tabs to whitespace
-vim.o.shiftwidth = 4 -- width for autoindents
-vim.o.shiftround = true -- use multiple of shiftwidth when indenting with '<' and '>'
+vim.o.updatetime = 250 -- decrease update time
 
 -- search options
 vim.o.ignorecase = true -- case insensitive search
@@ -37,3 +31,6 @@ vim.wo.foldenable = false
 vim.o.foldlevel = 2
 
 vim.o.mouse = '' -- disable mouse
+
+local vimpath = vim.fn.stdpath('config') .. '/lua/default-settings.vim'
+vim.cmd('source ' .. vimpath)
