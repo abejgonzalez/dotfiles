@@ -183,7 +183,7 @@ metals_config.settings = {
 }
 metals_config.root_patterns = { "build.sbt", "build.sc" }
 
--- Find the last directory which contains one of the files/directories in 'metals_config.root_patterns'
+-- Find the *last* directory which contains one of the files/directories in 'metals_config.root_patterns' (useful for getting in CY/FireSim project)
 metals_config.find_root_dir = function(patterns, startpath)
     local root_dir = nil
     local path = Path:new(startpath)
@@ -195,6 +195,7 @@ metals_config.find_root_dir = function(patterns, startpath)
             end
         end
     end
+    print('Metals root_dir: ' .. root_dir)
     return root_dir
 end
 
