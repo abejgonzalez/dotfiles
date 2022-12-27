@@ -1,3 +1,0 @@
-[submodule "firrtl-syntax"]
-	path = firrtl-syntax
-	url = https://github.com/azidar/firrtl-syntax.git

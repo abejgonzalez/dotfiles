@@ -30,7 +30,6 @@ require('packer').startup(function(use)
     use 'sainnhe/sonokai' -- Colorscheme compatible with treesitter
     use 'edkolev/tmuxline.vim' -- Color config for tmux
     use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-    use 'craigemery/vim-autotag' -- save (and update) ctags on file save
     use 'akinsho/git-conflict.nvim' -- git conflict marker highlighting
     use 'cappyzawa/trim.nvim' -- trim trailing whitespace and lines
     use 'nvim-tree/nvim-tree.lua' -- file tree explorer
@@ -40,6 +39,52 @@ require('packer').startup(function(use)
 
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+
+    -- LSP setup
+    use { -- LSP Configuration & Plugins
+        'neovim/nvim-lspconfig',
+        requires = {
+            -- Automatically install LSPs to stdpath for neovim
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+
+            -- Useful status updates for LSP
+            'j-hui/fidget.nvim',
+
+            -- Additional lua configuration, makes nvim stuff amazing
+            'folke/neodev.nvim',
+
+        },
+    }
+    -- Scala lang. server
+    use {
+        'scalameta/nvim-metals',
+        requires = { "nvim-lua/plenary.nvim" }
+    }
+
+    use { -- Autocompletion
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp', -- Show data sent by lang. server
+            'hrsh7th/cmp-buffer', -- Provide suggestions based on current file
+            'hrsh7th/cmp-path', -- Give completions based on file system
+            'hrsh7th/cmp-nvim-lsp', -- Show data sent by lang. server
+            'hrsh7th/cmp-nvim-lua', -- Provides completions by lua API
+
+            -- snippet support (built in lua)
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip'
+        },
+    }
+
+    use {
+	"windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
+
+    -- Firrtl syntax highlighting
+    use { 'azidar/firrtl-syntax' }
+
 
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
     local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -57,10 +102,10 @@ end)
 --
 -- You'll need to restart nvim, and then it will work.
 if is_bootstrap then
-  print '=================================='
-  print '    Plugins are being installed'
-  print '    Wait until Packer completes,'
-  print '       then restart nvim'
-  print '=================================='
-  return
+    print '=================================='
+    print '    Plugins are being installed'
+    print '    Wait until Packer completes,'
+    print '       then restart nvim'
+    print '=================================='
+    return
 end

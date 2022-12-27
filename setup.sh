@@ -22,20 +22,6 @@ ln -sf nvim.appimage nvim
 popd
 echo "export PATH=\$XDG_CONFIG_HOME/installs:\$PATH" >> $SHELLRC_FILE
 
-# Install Vundle
-
-git clone https://github.com/VundleVim/Vundle.vim.git $SCRIPT_DIR/.vim/bundle/Vundle.vim
-
-# Setup firrtl syntax for vim
-
-git submodule update --init --recursive firrtl-syntax
-pushd firrtl-syntax
-mkdir -p $SCRIPT_DIR/.vim/syntax
-mkdir -p $SCRIPT_DIR/.vim/ftdetect
-ln -sf syntax/firrtl.vim $SCRIPT_DIR/.vim/syntax/firrtl.vim
-ln -sf ftdetect/firrtl.vim $SCRIPT_DIR/.vim/ftdetect/firrtl.vim
-popd
-
 # add ssh config to .ssh/config
 mkdir -p ~/.ssh
 cat $SCRIPT_DIR/config >> ~/.ssh/config
@@ -44,3 +30,9 @@ cat $SCRIPT_DIR/config >> ~/.ssh/config
 
 echo "[url \"ssh://git@github.com/\"]" >> ~/.gitconfig
 echo "  insteadOf = https://github.com/" >> ~/.gitconfig
+
+# Install coursier
+curl -fLo coursier https://github.com/coursier/launchers/raw/master/coursier
+chmod +x coursier
+mv coursier $XDG_CONFIG_HOME/installs/coursier
+coursier setup --install-dir $XDG_CONFIG_HOME/installs
