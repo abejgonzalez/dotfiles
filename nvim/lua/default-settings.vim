@@ -1,5 +1,3 @@
-" vim plug options
-
 " For Chisel syntax highlighting
 augroup ft_scala
     autocmd!
@@ -16,7 +14,5 @@ augroup ft_scala
     autocmd Syntax scala hi link chiselOperator Special
 augroup end
 
+" For Firrtl syntax highlighting
 au BufRead,BufNewFile *.fir set filetype=firrtl
-
-" Have ctags automatically check for all tags first and present them
-nnoremap <C-]> g<C-]>

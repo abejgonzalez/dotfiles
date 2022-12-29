@@ -85,7 +85,6 @@ require('packer').startup(function(use)
     -- Firrtl syntax highlighting
     use { 'azidar/firrtl-syntax' }
 
-
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
     local has_plugins, plugins = pcall(require, 'custom.plugins')
     if has_plugins then

@@ -1,4 +1,4 @@
--- map leader key to something more reachable
+-- map leader key to space (something more reachable)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 

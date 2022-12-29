@@ -3,12 +3,11 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 require('nvim-tree').setup({
-    open_on_setup = true,
     view = {
         adaptive_size = true,
     },
     filters = {
-        dotfiles = true,
+        dotfiles = false,
         custom = {
             '\\.o$',
             '\\.swp$',
@@ -17,14 +16,4 @@ require('nvim-tree').setup({
             '\\.fsdb$',
         }
     },
-    renderer = {
-        icons = {
-            -- show = {
-            --     file = false,
-            --     folder = false,
-            --     folder_arrow = false,
-            --     git = false,
-            -- }
-        }
-    }
 })
