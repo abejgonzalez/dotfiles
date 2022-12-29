@@ -9,7 +9,16 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
+-- use gitfiles if in git dir, else use find_files
+vim.keymap.set('n', '<leader>ff', function()
+  local _, ret, _ = require('telescope.utils').get_os_command_output({'git', 'rev-parse', '--is-inside-work-tree'})
+  if ret == 0 then
+    require("telescope.builtin").git_files()
+  else
+    require("telescope.builtin").find_files()
+  end
+end, { desc = '[F]ind [F]iles' })
+
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]ind [H]elp' })
 vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
 vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]ind by [G]rep' })
