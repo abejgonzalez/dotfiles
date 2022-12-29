@@ -1,4 +1,3 @@
---  TODO: How to terminate Scala metals build-server on nvim close? Maybe just autokill it in a hook? How to auto-start it?
 --  TODO: .metals dir is added wherever nvim is called. Ignore this? Or somehow move it's location?
 
 --  This function gets run when an LSP connects to a particular buffer.
