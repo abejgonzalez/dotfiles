@@ -27,7 +27,18 @@ pgrep -a java | grep -i "sbt-launch.jar --detach-stdio" | awk '{print $1}' | whi
     # get elapse time of pid in s
     sbt_up_s=$(ps -p $pid -o etimes | tail -n1 | awk '{print $1}')
     if [ "$SBT_THIN_SERVER_UP_S" -lt "$sbt_up_s" ]; then
-        echo "Deleting background SBT server running w/ PID: $pid"
+        echo "Deleting background SBT thin server running w/ PID: $pid"
+        kill -9 $pid
+    fi
+done
+
+# shutdown metals servers after 7 days
+METALS_SERVER_UP_S=$(( 7*24*60*60 ))
+pgrep -a java | grep -i "bloop.Server" | awk '{print $1}' | while read pid; do
+    # get elapse time of pid in s
+    sbt_up_s=$(ps -p $pid -o etimes | tail -n1 | awk '{print $1}')
+    if [ "$METALS_SERVER_UP_S" -lt "$sbt_up_s" ]; then
+        echo "Deleting background bloop server running w/ PID: $pid"
         kill -9 $pid
     fi
 done

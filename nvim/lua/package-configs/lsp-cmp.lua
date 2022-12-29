@@ -1,7 +1,6 @@
 --  TODO: How to terminate Scala metals build-server on nvim close? Maybe just autokill it in a hook? How to auto-start it?
 --  TODO: .metals dir is added wherever nvim is called. Ignore this? Or somehow move it's location?
 
-
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
     -- Helper to define mappings for LSP (mode, buffer and description)
@@ -121,11 +120,12 @@ cmp.setup({
     },
 
     sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "nvim_lua" },
-        { name = "buffer", keyword_length = 5 }, -- only give results after 5 chars
-        { name = "path" },
+        -- only give results after 5 chars
+        { name = "nvim_lsp", keyword_length = 5 },
+        { name = "luasnip", keyword_length = 5 },
+        { name = "nvim_lua", keyword_length = 5 },
+        { name = "buffer", keyword_length = 5 },
+        { name = "path", keyword_length = 5 },
     }),
 
     formatting = {

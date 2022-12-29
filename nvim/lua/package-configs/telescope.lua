@@ -13,7 +13,9 @@ end, { desc = '[/] Fuzzily search in current buffer]' })
 vim.keymap.set('n', '<leader>ff', function()
   local _, ret, _ = require('telescope.utils').get_os_command_output({'git', 'rev-parse', '--is-inside-work-tree'})
   if ret == 0 then
-    require("telescope.builtin").git_files()
+    require("telescope.builtin").git_files({
+      recurse_submodules = true
+    })
   else
     require("telescope.builtin").find_files()
   end
