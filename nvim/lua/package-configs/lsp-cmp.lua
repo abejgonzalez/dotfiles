@@ -46,7 +46,7 @@ require('mason').setup()
 
 -- List of servers to install by default (and list of settings)
 local servers = {
-    sumneko_lua = {
+    lua_ls = {
         Lua = {
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
