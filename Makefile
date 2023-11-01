@@ -38,6 +38,7 @@ gitconfig_install:
 .PHONY: coursier_install
 coursier_install:
 	curl -fLo coursier https://github.com/coursier/launchers/raw/master/coursier
+	mkdir -p $(INSTALL_DIR)
 	mv coursier $(INSTALL_DIR)/coursier
 	chmod u+x $(INSTALL_DIR)/coursier
 	$(INSTALL_DIR)/coursier setup --install-dir $(INSTALL_DIR)

@@ -173,91 +173,91 @@ cmp.setup({
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
--- nvim-metals (Scala LSP)
-
-local Path = require("plenary.path")
-
-local metals = require("metals")
-local metals_config = metals.bare_config()
-metals_config.on_attach = on_attach
-metals_config.settings = {
-    showImplicitArguments = true,
-    excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
-}
-metals_config.root_patterns = { "build.sbt", "build.sc" }
-
--- Find the *last* directory which contains one of the files/directories in 'metals_config.root_patterns' (useful for getting in CY/FireSim project)
-metals_config.find_root_dir = function(patterns, startpath)
-    local root_dir = nil
-    local path = Path:new(startpath)
-    for _, parent in ipairs(path:parents()) do
-        for _, pattern in ipairs(patterns) do
-            local target = Path:new(parent, pattern)
-            if target:exists() then
-                root_dir = parent
-            end
-        end
-    end
-    print('Metals root_dir: ' .. root_dir)
-    return root_dir
-end
-
-local metals_spinner_chars = {
-    "⠋",
-    "⠙",
-    "⠸",
-    "⠴",
-    "⠦",
-    "⠇",
-}
-
--- Translate Metals status messages to a format that fidget.nvim can understand
-local function metals_status_handler(_, status, ctx)
-    -- Strip off trailing spinner character (which is 3 characters wide)
-    if status.text then
-        local maybe_spinner_char = status.text:sub(-3, -1)
-        for _, v in pairs(metals_spinner_chars) do
-            if v == maybe_spinner_char then
-                status.text = status.text:sub(1, -4)
-                break
-            end
-        end
-    end
-
-    -- https://github.com/scalameta/nvim-metals/blob/main/lua/metals/status.lua#L36-L50
-    local val = {}
-    if status.hide then
-        val = { kind = "end" }
-    elseif status.show then
-        val = { kind = "begin", message = status.text, title = "Running" }
-    elseif status.text then
-        val = { kind = "report", message = status.text }
-    else
-        return
-    end
-
-    local info = { client_id = ctx.client_id }
-    local msg = { token = "metals", value = val }
-    -- call fidget progress handler
-    vim.lsp.handlers["$/progress"](nil, msg, info)
-end
-
-local handlers = {}
-handlers["metals/status"] = metals_status_handler
-
-metals_config.init_options.statusBarProvider = "on"
-metals_config.capabilities = capabilities
-metals_config.handlers = handlers
-
--- Use special sbt script that understands env. vars
-local sbtpath = vim.fn.stdpath('config') .. '/lua/sbt.sh'
-metals_config.sbtScript = sbtpath
-
-local lsp_metals = vim.api.nvim_create_augroup("lsp_metals", {})
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "scala,sbt",
-    callback = function()
-        metals.initialize_or_attach(metals_config)
-    end,
-    group = lsp_metals,
-})
+-- -- nvim-metals (Scala LSP)
+--
+-- local Path = require("plenary.path")
+--
+-- local metals = require("metals")
+-- local metals_config = metals.bare_config()
+-- metals_config.on_attach = on_attach
+-- metals_config.settings = {
+--     showImplicitArguments = true,
+--     excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+-- }
+-- metals_config.root_patterns = { "build.sbt", "build.sc" }
+--
+-- -- Find the *last* directory which contains one of the files/directories in 'metals_config.root_patterns' (useful for getting in CY/FireSim project)
+-- metals_config.find_root_dir = function(patterns, startpath)
+--     local root_dir = nil
+--     local path = Path:new(startpath)
+--     for _, parent in ipairs(path:parents()) do
+--         for _, pattern in ipairs(patterns) do
+--             local target = Path:new(parent, pattern)
+--             if target:exists() then
+--                 root_dir = parent
+--             end
+--         end
+--     end
+--     print('Metals root_dir: ' .. root_dir)
+--     return root_dir
+-- end
+--
+-- local metals_spinner_chars = {
+--     "⠋",
+--     "⠙",
+--     "⠸",
+--     "⠴",
+--     "⠦",
+--     "⠇",
+-- }
+--
+-- -- Translate Metals status messages to a format that fidget.nvim can understand
+-- local function metals_status_handler(_, status, ctx)
+--     -- Strip off trailing spinner character (which is 3 characters wide)
+--     if status.text then
+--         local maybe_spinner_char = status.text:sub(-3, -1)
+--         for _, v in pairs(metals_spinner_chars) do
+--             if v == maybe_spinner_char then
+--                 status.text = status.text:sub(1, -4)
+--                 break
+--             end
+--         end
+--     end
+--
+--     -- https://github.com/scalameta/nvim-metals/blob/main/lua/metals/status.lua#L36-L50
+--     local val = {}
+--     if status.hide then
+--         val = { kind = "end" }
+--     elseif status.show then
+--         val = { kind = "begin", message = status.text, title = "Running" }
+--     elseif status.text then
+--         val = { kind = "report", message = status.text }
+--     else
+--         return
+--     end
+--
+--     local info = { client_id = ctx.client_id }
+--     local msg = { token = "metals", value = val }
+--     -- call fidget progress handler
+--     vim.lsp.handlers["$/progress"](nil, msg, info)
+-- end
+--
+-- local handlers = {}
+-- handlers["metals/status"] = metals_status_handler
+--
+-- metals_config.init_options.statusBarProvider = "on"
+-- metals_config.capabilities = capabilities
+-- metals_config.handlers = handlers
+--
+-- -- Use special sbt script that understands env. vars
+-- local sbtpath = vim.fn.stdpath('config') .. '/lua/sbt.sh'
+-- metals_config.sbtScript = sbtpath
+--
+-- local lsp_metals = vim.api.nvim_create_augroup("lsp_metals", {})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = "scala,sbt",
+--     callback = function()
+--         metals.initialize_or_attach(metals_config)
+--     end,
+--     group = lsp_metals,
+-- })

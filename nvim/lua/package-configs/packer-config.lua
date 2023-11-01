@@ -56,11 +56,11 @@ require('packer').startup(function(use)
 
         },
     }
-    -- Scala lang. server
-    use {
-        'scalameta/nvim-metals',
-        requires = { "nvim-lua/plenary.nvim" }
-    }
+    -- -- Scala lang. server
+    -- use {
+    --     'scalameta/nvim-metals',
+    --     requires = { "nvim-lua/plenary.nvim" }
+    -- }
 
     use { -- Autocompletion
         'hrsh7th/nvim-cmp',
