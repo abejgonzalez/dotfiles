@@ -13,3 +13,4 @@ nvim/plugin/
 nvim/rplugin.vim
 nvim/mason/
 nvim/lua/.bsp
+*
