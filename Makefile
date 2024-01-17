@@ -42,3 +42,15 @@ coursier_install:
 	mv coursier $(INSTALL_DIR)/coursier
 	chmod u+x $(INSTALL_DIR)/coursier
 	$(INSTALL_DIR)/coursier setup --install-dir $(INSTALL_DIR)
+
+.PHONY: lastpass_install
+lastpass_install:
+	rm -rf lastpass-cli && git clone --depth=1 https://github.com/lastpass/lastpass-cli
+	mkdir -p $(INSTALL_DIR)
+	cd lastpass-cli && make && PREFIX=$(dir $(INSTALL_DIR)) make install
+
+.PHONY: nodejs_install
+nodejs_install:
+	curl -LO https://nodejs.org/dist/v20.11.0/node-v20.11.0-linux-x64.tar.xz
+	mkdir -p $(INSTALL_DIR)
+	tar -xvf node-v20.11.0-linux-x64.tar.xz --strip-components=1 -C $(dir $(INSTALL_DIR))

@@ -80,6 +80,7 @@ require('packer').startup(function(use)
         },
     }
 
+    -- Nicely add ending {([])} etc.
     use {
 	"windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
@@ -87,6 +88,19 @@ require('packer').startup(function(use)
 
     -- Firrtl syntax highlighting
     use { 'azidar/firrtl-syntax' }
+
+    -- ChatGPT
+    use({
+        "jackMort/ChatGPT.nvim",
+        requires = {
+          "MunifTanjim/nui.nvim",
+          "nvim-lua/plenary.nvim",
+          "nvim-telescope/telescope.nvim"
+        }
+    })
+
+    -- Github Copilot Autocomplete
+    use { 'github/copilot.vim' }
 
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
     local has_plugins, plugins = pcall(require, 'custom.plugins')
