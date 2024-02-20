@@ -7,7 +7,7 @@ SHELLRC_FILE := ~/.bashrc
 INSTALL_DIR := $(CONFIG_DIR)/installs/bin
 
 .PHONY: default
-default: bashrc_env neovim_install ssh_install gitconfig_install coursier_install
+default: bashrc_env neovim_install ssh_install gitconfig_install coursier_install nodejs_install lastpass_install ripgrep_install
 
 .PHONY: bashrc_env
 bashrc_env:
@@ -54,3 +54,9 @@ nodejs_install:
 	curl -LO https://nodejs.org/dist/v20.11.0/node-v20.11.0-linux-x64.tar.xz
 	mkdir -p $(INSTALL_DIR)
 	tar -xvf node-v20.11.0-linux-x64.tar.xz --strip-components=1 -C $(dir $(INSTALL_DIR))
+
+.PHONY: ripgrep_install
+ripgrep_install:
+	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz
+	mkdir -p $(INSTALL_DIR)
+	tar -xvf ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz --strip-components=1 -C $(INSTALL_DIR)
