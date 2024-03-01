@@ -72,3 +72,7 @@ cyclone() {
 fsclone() {
     git clone https://github.com/firesim/firesim $1
 }
+
+lpasslogin() {
+    LPASS_DISABLE_PINENTRY=1 lpass login -f $1
+}
