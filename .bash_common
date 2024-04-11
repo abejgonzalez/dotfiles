@@ -67,10 +67,12 @@ fi
 # make it easier to clone chipyard/firesim
 cyclone() {
     git clone https://github.com/ucb-bar/chipyard $1
+    cd $1
 }
 
 fsclone() {
     git clone https://github.com/firesim/firesim $1
+    cd $1
 }
 
 lpasslogin() {
