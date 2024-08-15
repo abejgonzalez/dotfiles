@@ -5,6 +5,9 @@ CONFIG_DIR := $(MKFILE_DIR)
 
 
 
+
+
+
 SHELLRC_FILE := ~/.bashrc
 
 INSTALL_DIR := $(CONFIG_DIR)/installs/bin
