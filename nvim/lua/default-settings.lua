@@ -4,7 +4,7 @@ vim.g.maplocalleader = ' '
 
 -- normal vim settings
 vim.o.termguicolors = true
-vim.o.t_Co = 256 -- support 256 color mode (for iterm2)
+--vim.o.t_Co = 256 -- support 256 color mode (for iterm2)
 vim.o.ttyfast = true -- speed up scrolling in vim
 vim.o.showmode = false -- don't show '-- MODENAME --' in status bar (normally enabled with statusline plugins
 vim.g.nobackup = true-- delete backup file on successful write
