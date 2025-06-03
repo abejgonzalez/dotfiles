@@ -2,6 +2,10 @@ Host a* ferry knight firesim1 harp
     User abe.gonzalez
     Hostname %h.millennium.berkeley.edu
 
+Host llano dork
+    User abe.gonzalez
+    Hostname %h.cs.berkeley.edu
+
 Host buildbot
     User buildbot
     Hostname ferry.millennium.berkeley.edu
