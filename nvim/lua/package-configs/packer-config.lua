@@ -24,7 +24,10 @@ require('packer').startup(function(use)
     }
 
     use 'p00f/nvim-ts-rainbow' -- Nice multicolored nested parenthesis
-    use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+    use {  -- Add indentation guides even on blank lines
+        'lukas-reineke/indent-blankline.nvim',
+        tag = "v2.20.8",
+    }
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
     use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
     use 'sainnhe/sonokai' -- Colorscheme compatible with treesitter
@@ -56,11 +59,11 @@ require('packer').startup(function(use)
 
         },
     }
-    -- Scala lang. server
-    use {
-        'scalameta/nvim-metals',
-        requires = { "nvim-lua/plenary.nvim" }
-    }
+    -- -- Scala lang. server
+    -- use {
+    --     'scalameta/nvim-metals',
+    --     requires = { "nvim-lua/plenary.nvim" }
+    -- }
 
     use { -- Autocompletion
         'hrsh7th/nvim-cmp',
@@ -77,6 +80,7 @@ require('packer').startup(function(use)
         },
     }
 
+    -- Nicely add ending {([])} etc.
     use {
 	"windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
@@ -84,6 +88,19 @@ require('packer').startup(function(use)
 
     -- Firrtl syntax highlighting
     use { 'azidar/firrtl-syntax' }
+
+    -- ChatGPT
+    use({
+        "jackMort/ChatGPT.nvim",
+        requires = {
+          "MunifTanjim/nui.nvim",
+          "nvim-lua/plenary.nvim",
+          "nvim-telescope/telescope.nvim"
+        }
+    })
+
+    -- Github Copilot Autocomplete
+    use { 'github/copilot.vim' }
 
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
     local has_plugins, plugins = pcall(require, 'custom.plugins')

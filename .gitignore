@@ -14,3 +14,4 @@ nvim/rplugin.vim
 nvim/mason/
 nvim/tree-sitter-latex/
 nvim/lua/.bsp
+*

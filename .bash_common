@@ -30,8 +30,7 @@ pgrep -a java | grep -i "sbt-launch.jar --detach-stdio" | awk '{print $1}' | whi
     # get elapse time of pid in s
     sbt_up_s=$(ps -p $pid -o etimes | tail -n1 | awk '{print $1}')
     if [ "$SBT_THIN_SERVER_UP_S" -lt "$sbt_up_s" ]; then
-        echo "Deleting background SBT thin server running w/ PID: $pid"
-        kill -9 $pid
+        kill -9 $pid &> /dev/null
     fi
 done
 
@@ -41,17 +40,14 @@ pgrep -a java | grep -i "bloop.Server" | awk '{print $1}' | while read pid; do
     # get elapse time of pid in s
     sbt_up_s=$(ps -p $pid -o etimes | tail -n1 | awk '{print $1}')
     if [ "$METALS_SERVER_UP_S" -lt "$sbt_up_s" ]; then
-        echo "Deleting background bloop server running w/ PID: $pid"
-        kill -9 $pid
+        kill -9 $pid &> /dev/null
     fi
 done
 
 # setup ssh-agent (see https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login)
 SSH_ENV="$HOME/.ssh/agent-environment-$(uname -n)"
 function start_agent {
-    echo "Initialising new SSH agent..."
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
     /usr/bin/ssh-add;
@@ -67,3 +63,18 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
+
+# make it easier to clone chipyard/firesim
+cyclone() {
+    git clone https://github.com/ucb-bar/chipyard $1
+    cd $1
+}
+
+fsclone() {
+    git clone https://github.com/firesim/firesim $1
+    cd $1
+}
+
+lpasslogin() {
+    LPASS_DISABLE_PINENTRY=1 lpass login -f $1
+}
