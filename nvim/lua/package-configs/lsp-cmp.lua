@@ -62,18 +62,26 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local mason_lspconfig = require('mason-lspconfig')
 mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers),
+    automatic_enable = true,
 }
 
--- Setup mason server capabilities + settings + attachment mappings
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
+-- Loop through your servers and set them up
+for server_name, server_opts in pairs(servers) do
+  -- Merge common settings (capabilities, on_attach) with server-specific settings
+  -- The `vim.tbl_deep_extend` ensures your server_opts (e.g., 'settings')
+  -- are merged correctly without overwriting
+  local final_opts = vim.tbl_deep_extend(
+    'force',
+    {
       capabilities = capabilities,
       on_attach = on_attach,
-      settings = servers[server_name],
-    }
-  end,
-}
+    },
+    server_opts -- This contains your server-specific settings
+  )
+
+  -- Setup the server using lspconfig
+  require('lspconfig')[server_name].setup(final_opts)
+end
 
 -- Turn on lsp status information
 require('fidget').setup()
