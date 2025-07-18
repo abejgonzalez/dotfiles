@@ -1,11 +1,14 @@
 Host a* ferry knight firesim1 harp
     User abe.gonzalez
     Hostname %h.millennium.berkeley.edu
+    SetEnv TERM=xterm-256color
 
 Host llano dork
     User abe.gonzalez
     Hostname %h.cs.berkeley.edu
+    SetEnv TERM=xterm-256color
 
 Host buildbot
     User buildbot
     Hostname ferry.millennium.berkeley.edu
+    SetEnv TERM=xterm-256color

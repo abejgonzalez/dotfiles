@@ -23,11 +23,8 @@ require('packer').startup(function(use)
         after = 'nvim-treesitter',
     }
 
-    use 'p00f/nvim-ts-rainbow' -- Nice multicolored nested parenthesis
-    use {  -- Add indentation guides even on blank lines
-        'lukas-reineke/indent-blankline.nvim',
-        tag = "v2.20.8",
-    }
+    use 'HiPhish/rainbow-delimiters.nvim' -- Nice multicolored nested parenthesis
+    use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
     use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
     use 'sainnhe/sonokai' -- Colorscheme compatible with treesitter

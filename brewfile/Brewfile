@@ -1,0 +1,16 @@
+# specify a directory to install
+cask_args appdir: '/Applications'
+# install cmdline only packages
+brew 'yt-dlp'
+brew 'ffmpeg'
+brew 'gnu-sed'
+brew 'bat'
+brew 'btop'
+tap 'neovim/neovim' || true
+brew 'neovim'
+brew 'bash-completion'
+brew 'git'
+brew 'python'
+brew 'watch'
+brew 'wget'
+# install cmdline + mac gui packages
